@@ -21,7 +21,7 @@ nivel_estudios = st.selectbox("Nivel de estudios", [
 sida = st.selectbox("Sida", ["No", "Sí", "Desconocido"])
 edad = st.number_input("Edad", min_value=18, max_value=100, value=50)
 carga_viral = st.selectbox("Carga viral al diagnóstico", ["<100.000 copias/ml", ">=100.000 copias/ml", "Desconocido"])
-clase_tar = st.selectbox("Clase de TAR", ["1", "2", "3", "4"])
+tipo_tar = st.selectbox("Tipo de TAR", ["2NRTI+1NNRTI", "2NRTI+1IP", "2NRTI+1II", "Otro"])
 cd4 = st.number_input("CD4", min_value=0, max_value=2000, value=500)
 anticore_vhb = st.selectbox("VHB anticore", ["Negativo", "Positivo", "Desconocido"])
 serologia_vhc = st.selectbox("VHC", ["Negativo", "Positivo", "Desconocido"])
