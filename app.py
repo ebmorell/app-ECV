@@ -4,7 +4,7 @@ import joblib
 import numpy as np
 
 # Cargar modelo
-modelo = joblib.load("/content/modelo_ECV_RF.pkl")
+modelo = joblib.load("modelo_ECV_RF.pkl")
 
 st.title("Predicción de Evento Cardiovascular en Pacientes con VIH")
 st.write("Introduce los datos del paciente para estimar el riesgo de ECV.")
