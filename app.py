@@ -4,7 +4,7 @@ import joblib
 import numpy as np
 
 # Cargar modelo
-modelo = joblib.load("modelo_ECV_RF.pkl")
+modelo = joblib.load('modelo_ECV_RF.pkl')
 
 st.title("Predicción de Evento Cardiovascular en Pacientes con VIH")
 st.write("Introduce los datos del paciente para estimar el riesgo de ECV.")
@@ -48,6 +48,8 @@ edu_dict = {"Sin estudios o primaria incompleta":0, "Primaria actual":1, "Secund
 nivel_estudios = edu_dict[nivel_estudios]
 carga_dict = {"<100.000 copias/ml":1, ">=100.000 copias/ml":2, "Desconocido":3}
 carga_viral = carga_dict[carga_viral]
+tar_dict = {"2NRTI+1NNRTI":0, "2NRTI+1IP":1, "2NRTI+1II":2, "Otro":3}
+tipo_tar = tar_dict[tipo_tar]
 vhb_dict = {"Negativo":0, "Positivo":1, "Desconocido":2}
 anticore_vhb = vhb_dict[anticore_vhb]
 vhc = vhb_dict[serologia_vhc]
@@ -57,10 +59,11 @@ diabetes = 1 if diabetes == "Sí" else 0
 
 # Vector de entrada (ajustar orden y número según el modelo)
 X_input = np.array([[sexo, via_transmision, origen, nivel_estudios, sida, edad, carga_viral,
-                     int(clase_tar), cd4, 0, vhc, anticore_vhb, cociente_cd4_cd8, hta,
+                     tipo_tar, cd4, 0, vhc, anticore_vhb, cociente_cd4_cd8, hta,
                      fumador, col_total, hdl, trigliceridos, col_no_hdl, ratio_trig_hdl, diabetes]])
 
 # Predicción
 if st.button("Predecir evento cardiovascular"):
     prob = modelo.predict_proba(X_input)[0][1]
     st.write(f"🔎 Probabilidad estimada de evento cardiovascular: **{prob:.2%}**")
+
